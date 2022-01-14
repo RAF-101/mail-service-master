@@ -1,5 +1,6 @@
 package com.raf.emailservice.controller;
 
+import com.raf.emailservice.EmailServiceApplication;
 import com.raf.emailservice.domain.Tip;
 import com.raf.emailservice.repository.TipRepository;
 import org.springframework.http.HttpStatus;
@@ -28,14 +29,14 @@ public class ReservationController {
         return new ResponseEntity<>("Hello", HttpStatus.OK);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/findTip/{name}")
     public ResponseEntity<String> hello(@PathVariable("name") String name) {
-        return new ResponseEntity<>( tipRepository.findByName(name).toString(), HttpStatus.OK);
+        return new ResponseEntity<>( EmailServiceApplication.tipovi.getTip(name).toString(), HttpStatus.OK);
     }
 
-    @PostMapping("/tip")
+    @PostMapping("/addTip")
     public ResponseEntity<Void> addTip(@RequestBody @Valid Tip tip) {
-        tipRepository.save(tip);
+        EmailServiceApplication.tipovi.addTip(tip);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
