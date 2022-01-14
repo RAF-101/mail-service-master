@@ -2,6 +2,7 @@ package com.raf.emailservice;
 
 import com.raf.emailservice.tipizacija.Tip;
 import com.raf.emailservice.tipizacija.Tipovi;
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
@@ -10,7 +11,7 @@ public class EmailServiceApplication {
     public static Tipovi tipovi = new Tipovi();
 
     public static void main(String[] args) {
-        //SpringApplication.run(EmailServiceApplication.class, args);
+        SpringApplication.run(EmailServiceApplication.class, args);
 
         Tip a = new Tip("Tip1","Tip1 %haha",1);
         String[] x = new String[1];
