@@ -15,8 +15,12 @@ public class Tipovi {
     public Tipovi() {
     }
 
-    public void addTip(Tip tip){
+    public boolean addTip(Tip tip){
+        for(Tip postojeciTip : this.tipovi) {
+            if(postojeciTip.getName().equals(tip.getName())) return false;
+        }
         this.tipovi.add(tip);
+        return true;
     }
 
     public boolean deleteTip(String name){
@@ -32,7 +36,6 @@ public class Tipovi {
     public Tip getTip(String name){
         for(Tip tip : tipovi){
             if(tip.getName().equals(name)){
-                tipovi.remove(tip);
                 return tip;
             }
         }
