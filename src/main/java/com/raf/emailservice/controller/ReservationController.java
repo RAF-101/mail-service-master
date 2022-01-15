@@ -1,10 +1,12 @@
 package com.raf.emailservice.controller;
 
 import com.raf.emailservice.EmailServiceApplication;
+import com.raf.emailservice.domain.Notifications;
 import com.raf.emailservice.domain.Tip;
 import com.raf.emailservice.domain.Tipovi;
 import com.raf.emailservice.repository.TipRepository;
 import com.raf.emailservice.service.EmailService;
+import com.sun.tools.javac.util.Pair;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,6 +62,7 @@ public class ReservationController {
         if( (notification = EmailServiceApplication.tipovi.getTip(name) ) != null) {
             String message = notification.buildMessage(parameters);
             EmailServiceApplication.mailing.sendSimpleMessage(receiver, name, message);
+            Notifications.sentNotifications.add(new Pair<Tip, String[]>(EmailServiceApplication.tipovi.getTip(name),parameters));
             return new ResponseEntity<>(HttpStatus.ACCEPTED);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
