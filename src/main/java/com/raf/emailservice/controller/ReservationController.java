@@ -2,6 +2,7 @@ package com.raf.emailservice.controller;
 
 import com.raf.emailservice.EmailServiceApplication;
 import com.raf.emailservice.domain.Tip;
+import com.raf.emailservice.domain.Tipovi;
 import com.raf.emailservice.repository.TipRepository;
 import com.raf.emailservice.service.EmailService;
 import org.springframework.http.HttpStatus;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/notification")
@@ -45,6 +47,11 @@ public class ReservationController {
     public ResponseEntity<Void> deleteTip(@RequestBody @Valid String name) {
         if(EmailServiceApplication.tipovi.deleteTip(name)) return new ResponseEntity<>(HttpStatus.ACCEPTED);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/listTips")
+    public ResponseEntity<List<Tip>> listTips() {
+        return new ResponseEntity<>( EmailServiceApplication.tipovi.getTipovi(), HttpStatus.OK);
     }
 
     @PostMapping("/sendNotification")

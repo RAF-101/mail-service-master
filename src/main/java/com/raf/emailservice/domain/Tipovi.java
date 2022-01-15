@@ -23,6 +23,10 @@ public class Tipovi {
         return true;
     }
 
+    public List<Tip> getTipovi() {
+        return tipovi;
+    }
+
     public boolean deleteTip(String name){
         for(Tip tip : tipovi){
             if(tip.getName().equals(name)){

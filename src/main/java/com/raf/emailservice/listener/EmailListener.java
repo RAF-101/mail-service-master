@@ -23,8 +23,8 @@ public class EmailListener {
 
     @JmsListener(destination = "${destination.sendEmails}", concurrency = "5-10")
     public void sentNotification(Message message) throws JMSException {
-        TipDto tipDto = messageHelper.getMessage(message, TipDto.class);
-        System.out.println(tipDto);
+        //TipDto tipDto = messageHelper.getMessage(message, TipDto.class);
+        System.out.println(message);
         //emailService.sendSimpleMessage("mradovic01011111@gmail.com", "subject", tipDto.toString());
     }
 }
